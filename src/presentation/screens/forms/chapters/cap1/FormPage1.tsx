@@ -7,26 +7,66 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { NextComponent } from '../../../../components/shared/NextComponent';
 import { Prevcomponent } from '../../../../components/shared/PrevComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native'
+import { UseSaveData } from '../../../../hooks/UseSaveData';
+
+export interface FormTemplate{
+  qId: string;
+  qFather: string;
+  response:[string];
+}
 export interface FormValues {
-  q1: string;
-  q2: string;
-  q3: string;
-  q4: string;
-  q5: string;
-  q6: string;
-  q7: string;
-  q8: string;
+  q1: FormTemplate;
+  q2: FormTemplate;
+  q3: FormTemplate;
+  q4: FormTemplate;
+  q5: FormTemplate;
+  q6: FormTemplate;
+  q7: FormTemplate;
+  q8: FormTemplate;
 }
 
 const myInitialValues:FormValues = {
-  q1: "",
-  q2: "",
-  q3: "",
-  q4: "",
-  q5: "",
-  q6: "",
-  q7: "",
-  q8: "",
+  q1: {
+    qId: 'P1',
+    qFather: '',
+    response:[""]
+  },
+  q2: {
+    qId: 'P2',
+    qFather: '',
+    response:[""]
+  },
+  q3: {
+    qId: 'P3',
+    qFather: '',
+    response:[""]
+  },
+  q4: {
+    qId: 'P4',
+    qFather: '',
+    response:[""]
+  },
+  q5: {
+    qId: 'P5',
+    qFather: '',
+    response:[""]
+  },
+  q6: {
+    qId: 'P6',
+    qFather: '',
+    response:[""]
+  },
+  q7: {
+    qId: 'P7',
+    qFather: '',
+    response:[""]
+  },
+  q8: {
+    qId: 'P8',
+    qFather: '',
+    response:[""]
+  },
 }
 
 const keys = ['q1', 'q2', 'q3','q4','q5','q6','q7','q8'];
@@ -44,8 +84,16 @@ const saveLocalData = async (data: Record<string, any>) =>{
   }
 }
 
+let now = new Date();
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, '0');
+const day = String(now.getDate()).padStart(2, '0');
+const fileName = `${year}-${month}-${day}`;
+
 export const FormPage1 = () => {
 
+  const navigation = useNavigation();
+  const {saveAllData, getAllData} = UseSaveData();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -57,74 +105,81 @@ export const FormPage1 = () => {
         </View>
         <Formik
           initialValues={myInitialValues}
-          onSubmit={async (values:FormValues, { setSubmitting }) => {
-            await saveLocalData(values);
-            Alert.alert(JSON.stringify(values,null,2));
-            setSubmitting(false);
-          }}
-        >
+          onSubmit={ async(
+            values: FormValues,
+            {setSubmitting} : FormikHelpers<FormValues>
+          ) => {
+            try{
+              await saveAllData(`${fileName}.json`,values);
+            }
+            finally{
+              setSubmitting(false);
+              navigation.navigate('page2' as never)
+            }
+          }
+          }>
           {({handleChange, handleBlur,handleSubmit,values}) =>(
               <View>
                 <InputComponent
                   info='q1'
                   textTitle='P1. Nombre completo del encuestado:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q1.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q1.response}
                 />
                 <InputComponent
                   info='q2'
                   textTitle='P2. Nombre de entidad, organización o comunidad a la que representa:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q2.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q2.response}
                 />
                 <InputComponent
                   info='q3'
                   textTitle='P3. Número de celular:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q3.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q3.response}
                 />
                 <InputComponent
                   info='q4'
                   textTitle='P4. Correo electrónico:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q4.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q4.response}
                 />
                 <InputComponent
                   info='q5'
                   textTitle='P5. Nombre departamento:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q5.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q5.response}
                 />
                 <InputComponent
                   info='q6'
                   textTitle='P6. Código departamento:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q6.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q6.response}
                 />
                 <InputComponent
                   info='q7'
                   textTitle='Nombre municipio:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q7.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q7.response}
                 />
                 <InputComponent
                   info='q8'
                   textTitle='P8. Código municipio:'
-                  handleChange={handleChange}
+                  handleChange={(value) => handleChange('q8.response', value)}
                   handleBlur={handleBlur}
-                  values={values}
+                  values={values.q8.response}
                 />
                 <Button  onPress={handleSubmit as (event:any) => void} title='Submit'/>
                   <View style={globalStyles.buttonsBanner}>
                     <Prevcomponent/>
-                    <NextComponent onNextPress={handleSubmit as (Event:any) => void} />
+                    <NextComponent onNextPress={handleSubmit} />
                   </View>
               </View>
             )}

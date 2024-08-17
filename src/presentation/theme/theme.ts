@@ -73,6 +73,7 @@ export const globalStyles = StyleSheet.create({
         marginBottom: 20,
         paddingLeft: 20,
         borderColor: 'black',
+        color: 'black',
         borderWidth: 2,
     },
 }

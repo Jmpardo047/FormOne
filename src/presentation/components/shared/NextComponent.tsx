@@ -14,6 +14,7 @@ export const NextComponent = ({onNextPress}:Props) => {
             style={globalStyles.fab}
             color='blue'
             icon={() => <Icon name="caret-forward-outline" size={25} color={'white'}/>}
+            onPress={onNextPress}
         />
   )
 }

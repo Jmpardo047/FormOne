@@ -1,6 +1,8 @@
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/home/HomeScreen';
 import { FormPage1 } from '../screens/forms/chapters/cap1/FormPage1';
+import { FormPage2 } from '../screens/forms/chapters/cap1/FormPage2';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +17,7 @@ export const AppNavigator = () => {
     }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="page1" component={FormPage1} />
+      <Stack.Screen name="page2" component={FormPage2} />
     </Stack.Navigator>
   );
 }
