@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const globalColors = {
     background: '#ffff',
-    primarybg: '#394fbb'
+    primarybg: '#4A7E8F'
 }
 
 export const globalStyles = StyleSheet.create({
@@ -60,6 +60,7 @@ export const globalStyles = StyleSheet.create({
     },
     questionTitle:{
         color: 'black',
+        marginBottom: 10,
     },
     Title: {
         fontSize: 20,
@@ -69,12 +70,18 @@ export const globalStyles = StyleSheet.create({
     },
     input:{
         height: 50,
-        backgroundColor:"white",
         marginBottom: 20,
         paddingLeft: 20,
-        borderColor: 'black',
+        backgroundColor: 'rgba(75, 251, 247, 0.37)',
         color: 'black',
-        borderWidth: 2,
+        borderRadius: 10,
+        fontSize: 15,
+        fontWeight: '700',
+    },
+    picker:{
+        borderRadius: 10,
+        backgroundColor: 'rgba(75, 251, 247, 0.37)',
+        marginBottom: 10,
     },
 }
 )

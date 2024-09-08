@@ -12,7 +12,7 @@ export const NextComponent = ({onNextPress}:Props) => {
   return (
         <FAB
             style={globalStyles.fab}
-            color='blue'
+            color='#4A7E8F'
             icon={() => <Icon name="caret-forward-outline" size={25} color={'white'}/>}
             onPress={onNextPress}
         />

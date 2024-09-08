@@ -6,25 +6,26 @@ import { globalStyles } from '../../theme/theme';
 interface Props {
   textTitle: string;
   info: string;
-  handleChange: (field: string) => (e: string | React.ChangeEvent<any>) => void;
-  handleBlur: (field: string) => (e: any) => void;
-  values: {
-    [key: string]: any;
-  };
+  handleChange: (value: string) => void;  // Cambié aquí para que solo acepte el valor del input
+  handleBlur: () => void;  // handleBlur no necesita un argumento aquí
+  values: string | string[] | undefined;
 }
 
 export const InputComponent = ({ textTitle, info, handleBlur, handleChange, values }: Props) => {
+
+  const stringValue = Array.isArray(values) ? values[0] || '' : values || '';
+  
   return (
     <View>
       <Text style={globalStyles.questionTitle}>{textTitle}</Text>
       <TextInput
-        onChangeText={handleChange(info)}
-        onBlur={(e) => handleBlur(info)(e)}
-        value={values[info]}
+        onChangeText={handleChange}
+        onBlur={handleBlur} 
+        value={stringValue}  
         style={globalStyles.input}
         placeholder={info}
-        placeholderTextColor="#888">
-      </TextInput>
+        placeholderTextColor="#888"
+      />
     </View>
   )
 }
