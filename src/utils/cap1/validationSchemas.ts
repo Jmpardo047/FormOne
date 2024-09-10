@@ -74,7 +74,8 @@ export const validationSchemaPage2 = Yup.object().shape({
     response: Yup.array().of(
       Yup.object().shape({
         responseuser: Yup.array().of(Yup.string().required('Campo obligatorio')
-      .notOneOf([""], "Seleccionar una Opción válida"))
+      .notOneOf([""], "Seleccionar una Opción válida")
+      .notOneOf(["No"], "Debe aceptar si desea continuar la encuesta"))
       })
     )
   }),

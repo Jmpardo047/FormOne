@@ -61,11 +61,11 @@ export const FormPage1 = () => {
           {({handleChange, handleBlur,handleSubmit,values, errors, touched, setFieldValue, setFieldTouched}) =>(
               <View >
                 <InputComponent
-                  info='P1'  // Accedemos al primer valor del array
+                  info='P1' 
                   textTitle='P1. Nombre completo del encuestado:'
                   handleChange={(value: string) => setFieldValue('P1.response[0].responseuser[0]', value)}
                   handleBlur={() => setFieldTouched('P1.response[0].responseuser[0]')}
-                  values={values.P1.response[0].responseuser}  // Mostramos el primer valor
+                  values={values.P1.response[0].responseuser} 
                 />
                   <ErrorMessage errors={errors} touched={touched} fieldName="P1" />
                 <InputComponent
