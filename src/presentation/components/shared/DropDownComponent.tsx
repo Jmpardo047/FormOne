@@ -7,7 +7,7 @@ interface DropDownProps {
   values: string[]; 
   setFieldValue: (value: string) => void; 
   qTitle: string;
-  opValues: string[];
+  opValues: { label: string; value: string }[];
 }
 
 export const DropDownComponent = ({ values, setFieldValue, qTitle, opValues }: DropDownProps) => {
@@ -21,7 +21,7 @@ export const DropDownComponent = ({ values, setFieldValue, qTitle, opValues }: D
         >
           <Picker.Item label="Seleccione una opción" value="" />
           {opValues.map((option, index) => (
-            <Picker.Item label={option} value={option} key={index} />
+            <Picker.Item label={option.label} value={option.value} key={index} />
           ))}
         </Picker>
       </View>

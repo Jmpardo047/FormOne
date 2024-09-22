@@ -40,7 +40,9 @@ export const getInitialValuesPage2 = () => {
 export const getInitialValuesPage3 = () => {
     return {
         P14: initialResponses("P14","1","","14"),
-        P15: initialResponses("P8","1","","15"),
-        P16: initialResponses("P8","1","","16"),
+        P15: initialResponses("P15","1","","15"),
+        P16: initialResponses("P16","1","","16"),
+        P17: initialResponses("P17","1","","17"),
+        P18: initialResponses("P18","1","","18"),
     }
 }

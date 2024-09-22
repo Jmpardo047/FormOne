@@ -14,11 +14,16 @@ import { fileName } from '../../../../../utils/generateFilename';
 import { getInitialValuesPage3 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownComponent } from '../../../../components/shared/DropDownComponent';
+import { opt16, opt15, opt17, opt18 } from '../../../../../utils/cap2/categoriesPage3';
+import { DropDownInputComponent } from '../../../../components/shared/DropDownInputComponent';
+import { ErrorIdMessage } from '../../../../components/shared/ErrorIdComponent';
 
 export interface FormValues{
     P14:FormTemplate
     P15:FormTemplate
     P16:FormTemplate
+    P17:FormTemplate
+    P18:FormTemplate
 }
 
 
@@ -62,21 +67,57 @@ export const FormPage3 = () => {
                         values={values.P14.response[0].responseuser}
                         />
                             <ErrorMessage errors={errors} touched={touched} fieldName="P14" />
+
                         <DropDownComponent
                         values={values.P15.response[0].responseuser}
                         setFieldValue={(value) => setFieldValue('P15.response[0].responseuser[0]', value)}
                         qTitle='P15. ¿Cuántos años de experiencia tiene en este cargo u ocupación?'
-                        opValues={['Menor de 1 año', 'Entre 1 a 3 años', 'Entre 4 a 6 años',
-                            'Entre 7 a 9 años', '10 años o mayor']}
+                        opValues={opt15}
                         />
                             <ErrorMessage errors={errors} touched={touched} fieldName="P15"/>
+
                         <DropDownComponent
                         values={values.P16.response[0].responseuser}
                         setFieldValue={(value) => setFieldValue('P16.response[0].responseuser[0]', value)}
                         qTitle='P16. ¿Las funciones / labores que usted desempeña tiene cobertura?'
-                        opValues={['Urbana', 'Rural', 'Ambas']}
+                        opValues={opt16}
                         />
                             <ErrorMessage errors={errors} touched={touched} fieldName="P16"/>
+                        
+                        <DropDownInputComponent
+                            categoryTitle="P17. ¿Qué tipo de vinculación tiene usted en el cargo, ocupación o rol que desempeña actualmente?"
+                            textTitle='¿Cuál?'
+                            categories={opt17}
+                            selectedCategory={values.P17.response[0].responseuser[0]}
+                            onCategoryChange={(value) => setFieldValue('P17.response[0].responseuser[0]', value)}
+                            errors={errors.P17?.response?.[0]}
+                            touched={touched.P17?.response?.[0]}
+                            values={values.P17.response[0].responseuser} 
+                            handleChange={(value: string) => setFieldValue('P17.response[0].responseuser[0]', value)}
+                            handleBlur={() => setFieldTouched('P17.response[0].responseuser[0]')}
+                            info='P17'
+                        >
+                        </DropDownInputComponent>
+
+                            <ErrorIdMessage errors={errors} touched={touched} fieldName="P17" />
+                        
+                            <DropDownInputComponent
+                            categoryTitle="P18. De los siguientes mecanismos, ¿cuáles dispone la entidad u organización que usted representa, para hacer el registro continuo y actualizado de los casos que se atienden?"
+                            textTitle='¿Cuál?'
+                            categories={opt18}
+                            selectedCategory={values.P18.response[0].responseuser[0]}
+                            onCategoryChange={(value) => setFieldValue('P18.response[0].responseuser[0]', value)}
+                            errors={errors.P18?.response?.[0]}
+                            touched={touched.P18?.response?.[0]}
+                            values={values.P18.response[0].responseuser} 
+                            handleChange={(value: string) => setFieldValue('P18.response[0].responseuser[0]', value)}
+                            handleBlur={() => setFieldTouched('P18.response[0].responseuser[0]')}
+                            info='P18'
+                        >
+                        </DropDownInputComponent>
+
+                        <ErrorIdMessage errors={errors} touched={touched} fieldName="P18" />
+
                     </View>
                 )}
             </Formik>
