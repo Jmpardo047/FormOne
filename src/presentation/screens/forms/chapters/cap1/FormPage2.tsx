@@ -70,6 +70,7 @@ export const FormPage2 = () => {
                 values={values.P7.response[0].responseuser}
               />
               <ErrorMessage errors={errors} touched={touched} fieldName="P7" />
+              
               <InputComponent
                 info='P8'
                 textTitle='P8. Código municipio:'

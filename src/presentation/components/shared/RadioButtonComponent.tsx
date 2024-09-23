@@ -7,9 +7,11 @@ interface RadioButtonProps {
   options : {label: string, value: string}[];
   name:string;
   qTitle : string;
+  errors?: any;
+  touched?: any;
 }
 
-export const RadioButton = ({options, name, qTitle}:RadioButtonProps) => {
+export const RadioButton = ({options, name, qTitle, errors, touched}:RadioButtonProps) => {
 
   const [field, meta, helpers] = useField(name);
 
@@ -48,6 +50,9 @@ export const RadioButton = ({options, name, qTitle}:RadioButtonProps) => {
               <Text>{option.label}</Text>
             </TouchableOpacity>
           ))}
+            {errors && touched && errors[name] && touched[name] && (
+          <Text style={{ color: 'red' }}>{errors[name]}</Text>
+        )}
         </View>
     </View>
   )

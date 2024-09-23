@@ -61,7 +61,7 @@ export const FormPage3 = () => {
                 }
                 finally{
                     setSubmitting(false);
-                    navigation.navigate('page2' as never)
+                    navigation.navigate('page4' as never)
                 }}
                 }>
                 {({handleChange, handleBlur,handleSubmit,values, setFieldValue, setFieldTouched, errors, touched}) =>(
@@ -131,22 +131,28 @@ export const FormPage3 = () => {
                             options={opt19_1}
                             name='P19_1.response[0].responseuser[0]'
                             qTitle='Número total de casos'
+                            errors={errors.P19_1?.response?.[0]}  
+                            touched={touched.P19_1?.response?.[0]}
                         />
-                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_1.response[0].responseuser[0]" />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_1" />
 
                         <RadioButton
                             options={opt19_1}
                             name='P19_2.response[0].responseuser[0]'
                             qTitle='Número de casos activos'
+                            errors={errors.P19_1?.response?.[0]}  
+                            touched={touched.P19_1?.response?.[0]}
                         />
-                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_2.response[0].responseuser[0]" />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_2" />
 
                         <RadioButton
                             options={opt19_1}
                             name='P19_3.response[0].responseuser[0]'
                             qTitle='Número de casos archivados'
+                            errors={errors.P19_1?.response?.[0]}  
+                            touched={touched.P19_1?.response?.[0]}
                         />
-                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_3.response[0].responseuser[0]" />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_3" />
 
                         <InputComponent
                             info='P20' 

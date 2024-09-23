@@ -50,3 +50,14 @@ export const getInitialValuesPage3 = () => {
         P20: initialResponses("P20","3","","20"),
     }
 }
+
+export const getInitialValuesPage4 = () => {
+    return {
+        P21: initialResponses("P21","3","","21"),
+        P22: initialResponses("P22","3","","22"),
+        P23: initialResponses("P23","3","","23"),
+        P24: initialResponses("P24","3","","24"),
+        P25: initialResponses("P25","3","","25"),
+        P26: initialResponses("P26","3","","26"),
+    }
+}

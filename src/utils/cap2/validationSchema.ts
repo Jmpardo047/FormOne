@@ -49,11 +49,35 @@ export const validationSchemaPage3 = Yup.object().shape({
           })
         )
     }),
-    P6: Yup.object().shape({
-      response: Yup.array().of(
-        Yup.object().shape({
-          responseuser: Yup.array().of(Yup.string().required('Campo obligatorio'))
-        })
-      )
-    }),
+    P19_1: Yup.object({
+        response: Yup.array().of(
+          Yup.object({
+            responseuser: Yup.array()
+              .of(Yup.string().required('Este campo es obligatorio'))  
+          })
+        )
+      }),
+      P19_2: Yup.object({
+        response: Yup.array().of(
+          Yup.object({
+            responseuser: Yup.array()
+              .of(Yup.string().required('Este campo es obligatorio'))  
+          })
+        )
+      }),
+      P19_3: Yup.object({
+        response: Yup.array().of(
+          Yup.object({
+            responseuser: Yup.array()
+              .of(Yup.string().required('Este campo es obligatorio'))  
+          })
+        )
+      }),
+      P20: Yup.object().shape({
+        response: Yup.array().of(
+          Yup.object().shape({
+            responseuser: Yup.array().of(Yup.string().required('Campo obligatorio'))
+          })
+        )
+      }),
 });
