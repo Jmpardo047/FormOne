@@ -16,6 +16,7 @@ export const AppNavigator = () => {
         shadowColor: 'transparent',
       },
     }}>
+
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="page1" component={FormPage1} />
       <Stack.Screen name="page2" component={FormPage2} />

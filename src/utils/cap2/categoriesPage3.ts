@@ -28,3 +28,21 @@ export const opt18 = [
     { label: 'Otro', value: '61' },
     { label: 'Ninguno', value: '65' },
 ];
+
+export const opt19_1 = [
+    { label: 'Si', value: '19.1.1' },
+    { label: 'No', value: '19.1.2' },
+    { label: 'No sabe', value: '19.1.3' },
+];
+
+export const opt19_2 = [
+    { label: 'Si', value: '19.2.1' },
+    { label: 'No', value: '19.2.2' },
+    { label: 'No sabe', value: '19.2.3' },
+];
+
+export const opt19_3 = [
+    { label: 'Si', value: '19.3.1' },
+    { label: 'No', value: '19.3.2' },
+    { label: 'No sabe', value: '19.3.3' },
+];

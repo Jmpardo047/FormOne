@@ -14,9 +14,11 @@ import { fileName } from '../../../../../utils/generateFilename';
 import { getInitialValuesPage3 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownComponent } from '../../../../components/shared/DropDownComponent';
-import { opt16, opt15, opt17, opt18 } from '../../../../../utils/cap2/categoriesPage3';
+import { opt16, opt15, opt17, opt18, opt19_1 } from '../../../../../utils/cap2/categoriesPage3';
 import { DropDownInputComponent } from '../../../../components/shared/DropDownInputComponent';
 import { ErrorIdMessage } from '../../../../components/shared/ErrorIdComponent';
+import { RadioButton } from '../../../../components/shared/RadioButtonComponent';
+import { validationSchemaPage3 } from '../../../../../utils/cap2/validationSchema';
 
 export interface FormValues{
     P14:FormTemplate
@@ -24,6 +26,10 @@ export interface FormValues{
     P16:FormTemplate
     P17:FormTemplate
     P18:FormTemplate
+    P19_1:FormTemplate
+    P19_2:FormTemplate
+    P19_3:FormTemplate
+    P20: FormTemplate
 }
 
 
@@ -45,6 +51,7 @@ export const FormPage3 = () => {
 
             <Formik
                 initialValues={initialValues}
+                validationSchema={validationSchemaPage3}
                 onSubmit={ async(
                 values: FormValues,
                 {setSubmitting} : FormikHelpers<FormValues>
@@ -98,10 +105,13 @@ export const FormPage3 = () => {
                             info='P17'
                         >
                         </DropDownInputComponent>
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P17"/>
 
-                            <ErrorIdMessage errors={errors} touched={touched} fieldName="P17" />
+                        <View style={globalStyles.CapTitle}>
+                            <Text style={globalStyles.Title}>Capítulo 3. Capacidad Institucional</Text>
+                        </View>
                         
-                            <DropDownInputComponent
+                        <DropDownInputComponent
                             categoryTitle="P18. De los siguientes mecanismos, ¿cuáles dispone la entidad u organización que usted representa, para hacer el registro continuo y actualizado de los casos que se atienden?"
                             textTitle='¿Cuál?'
                             categories={opt18}
@@ -113,20 +123,47 @@ export const FormPage3 = () => {
                             handleChange={(value: string) => setFieldValue('P18.response[0].responseuser[0]', value)}
                             handleBlur={() => setFieldTouched('P18.response[0].responseuser[0]')}
                             info='P18'
-                        >
-                        </DropDownInputComponent>
+                        />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P18"/>
 
-                        <ErrorIdMessage errors={errors} touched={touched} fieldName="P18" />
+                        <Text style={globalStyles.questionTitle}>P19. El registro de los casos que atienden les permite conocer información específica, sobre:</Text>
+                        <RadioButton
+                            options={opt19_1}
+                            name='P19_1.response[0].responseuser[0]'
+                            qTitle='Número total de casos'
+                        />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_1.response[0].responseuser[0]" />
 
+                        <RadioButton
+                            options={opt19_1}
+                            name='P19_2.response[0].responseuser[0]'
+                            qTitle='Número de casos activos'
+                        />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_2.response[0].responseuser[0]" />
+
+                        <RadioButton
+                            options={opt19_1}
+                            name='P19_3.response[0].responseuser[0]'
+                            qTitle='Número de casos archivados'
+                        />
+                        <ErrorMessage errors={errors} touched={touched} fieldName="P19_3.response[0].responseuser[0]" />
+
+                        <InputComponent
+                            info='P20' 
+                            textTitle='P20. ¿Por qué no cuentan con un mecanismo para el registro de los casos que atienden?'
+                            handleChange={(value: string) => setFieldValue('P20.response[0].responseuser[0]', value)}
+                            handleBlur={() => setFieldTouched('P20.response[0].responseuser[0]')}
+                            values={values.P20.response[0].responseuser} 
+                        />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P20" />
+
+                        <View style={globalStyles.buttonsBanner}>
+                            <Prevcomponent onPrevPressed={() => navigation.navigate('page2' as never)}/>
+                            <NextComponent onNextPress={handleSubmit} />
+                        </View> 
                     </View>
                 )}
             </Formik>
-
-            <View style={globalStyles.buttonsBanner}>
-                <Prevcomponent onPrevPressed={() => navigation.navigate('page2' as never)}/>
-                <NextComponent onNextPress={() => navigation.navigate('page1' as never)} />
-            </View> 
-
         </ScrollView>
     </KeyboardAvoidingView>
   )

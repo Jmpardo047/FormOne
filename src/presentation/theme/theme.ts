@@ -83,5 +83,21 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: 'rgba(75, 251, 247, 0.37)',
         marginBottom: 10,
     },
+    radioButton:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: "100%",
+        marginVertical: 5,
+    },
+    ButtonSelector: {
+        height: 20,
+        width: 20,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#000',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 10,
+    }
 }
 )

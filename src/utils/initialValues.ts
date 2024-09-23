@@ -39,10 +39,14 @@ export const getInitialValuesPage2 = () => {
 
 export const getInitialValuesPage3 = () => {
     return {
-        P14: initialResponses("P14","1","","14"),
-        P15: initialResponses("P15","1","","15"),
-        P16: initialResponses("P16","1","","16"),
-        P17: initialResponses("P17","1","","17"),
-        P18: initialResponses("P18","1","","18"),
+        P14: initialResponses("P14","2","","14"),
+        P15: initialResponses("P15","2","","15"),
+        P16: initialResponses("P16","2","","16"),
+        P17: initialResponses("P17","2","","17"),
+        P18: initialResponses("P18","3","","18"),
+        P19_1: initialResponses("P19_1","3","19","19"),
+        P19_2: initialResponses("P19_2","3","19","19"),
+        P19_3: initialResponses("P19_3","3","19","19"),
+        P20: initialResponses("P20","3","","20"),
     }
 }
