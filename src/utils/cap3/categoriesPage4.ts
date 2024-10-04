@@ -33,10 +33,11 @@ export const opt24 = [
     { label: 'Comité Municipal para la Lucha contra la Trata de Personas', value: '82'},
     { label: 'Comité Territorial de Orden Público', value: '83'},
     { label: 'Comité Local de Justicia', value: '84'},
-];
+    { label: 'Otro', value: '61' },
+];  
 
 export const opt25 = [
-    { label: 'Juzgados', value: '86' },
+    { label: 'Juzgados', value: '   ' },
     { label: 'Fiscalía', value: '87' },
     { label: 'Policía judicial', value: '88' },
     { label: 'Hospital Local', value: '89' },
@@ -66,5 +67,6 @@ export const opt25 = [
     { label: 'Concejo Municipal', value: '113'},
     { label: 'Comandante de la estación de Policía', value: '114'},
     { label: 'Policía de Infancia y Adolescencia', value: '115'},
+    { label: 'Otro', value: '61' },
     { label: 'Ninguno', value: '65' },
 ];

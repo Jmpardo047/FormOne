@@ -51,7 +51,7 @@ export const FormPage3 = () => {
 
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchemaPage3}
+                // validationSchema={validationSchemaPage3}
                 onSubmit={ async(
                 values: FormValues,
                 {setSubmitting} : FormikHelpers<FormValues>
@@ -133,6 +133,7 @@ export const FormPage3 = () => {
                             qTitle='Número total de casos'
                             errors={errors.P19_1?.response?.[0]}  
                             touched={touched.P19_1?.response?.[0]}
+                            radioStyle={globalStyles.radioButton_2}
                         />
                         <ErrorMessage errors={errors} touched={touched} fieldName="P19_1" />
 
@@ -142,6 +143,7 @@ export const FormPage3 = () => {
                             qTitle='Número de casos activos'
                             errors={errors.P19_1?.response?.[0]}  
                             touched={touched.P19_1?.response?.[0]}
+                            radioStyle={globalStyles.radioButton_2}
                         />
                         <ErrorMessage errors={errors} touched={touched} fieldName="P19_2" />
 
@@ -151,6 +153,7 @@ export const FormPage3 = () => {
                             qTitle='Número de casos archivados'
                             errors={errors.P19_1?.response?.[0]}  
                             touched={touched.P19_1?.response?.[0]}
+                            radioStyle={globalStyles.radioButton_2}
                         />
                         <ErrorMessage errors={errors} touched={touched} fieldName="P19_3" />
 

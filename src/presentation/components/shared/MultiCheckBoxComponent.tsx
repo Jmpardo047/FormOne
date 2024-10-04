@@ -1,6 +1,6 @@
 import { useField } from 'formik';
-import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { globalStyles } from '../../theme/theme';
 
 interface CheckboxProps {
@@ -9,20 +9,38 @@ interface CheckboxProps {
   qTitle: string;
 }
 
-export const MultiCheckBox = ({ options, name, qTitle }: CheckboxProps) => {
+export const MultiCheckBox = ({ options: initialOptions, name, qTitle }: CheckboxProps) => {
   const [field, meta, helpers] = useField(name);  
   const { value } = field;  
   const { setValue } = helpers;  
 
+  const [options, setOptions] = useState(initialOptions);
+  const [otherValue, setOtherValue] = useState('');
+  const [showOtherInput, setShowOtherInput] = useState(false);
 
   const handleCheckboxChange = (selectedValue: string) => {
     const currentValues = value || [];  
     if (currentValues.includes(selectedValue)) {
-
       setValue(currentValues.filter((item: string) => item !== selectedValue));
+      if (selectedValue === '61') {
+        setShowOtherInput(false);
+        setOtherValue('');
+      }
     } else {
-
       setValue([...currentValues, selectedValue]);
+      if (selectedValue === '61') {
+        setShowOtherInput(true);
+      }
+    }
+  };
+
+  const handleAddOther = () => {
+    if (otherValue.trim()) {
+      const newOption = { label: otherValue, value: otherValue.toLowerCase().replace(/\s+/g, '-') };
+      setOptions([...options, newOption]);
+      setValue([...value, newOption.value]);
+      setOtherValue('');
+      setShowOtherInput(false);
     }
   };
 
@@ -48,7 +66,6 @@ export const MultiCheckBox = ({ options, name, qTitle }: CheckboxProps) => {
                 marginRight: 10,
               }}
             >
-
               {value?.includes(option.value) && (
                 <View
                   style={{
@@ -63,6 +80,33 @@ export const MultiCheckBox = ({ options, name, qTitle }: CheckboxProps) => {
           </TouchableOpacity>
         ))}
       </View>
+      {showOtherInput && (
+        <View style={{ marginTop: 10 }}>
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: '#000',
+              borderRadius: 3,
+              padding: 5,
+              marginBottom: 5,
+            }}
+            value={otherValue}
+            onChangeText={setOtherValue}
+            placeholder="cuál?"
+          />
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#000',
+              padding: 10,
+              borderRadius: 3,
+              alignItems: 'center',
+            }}
+            onPress={handleAddOther}
+          >
+            <Text style={{ color: '#fff' }}>Agregar</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
-};
+};  

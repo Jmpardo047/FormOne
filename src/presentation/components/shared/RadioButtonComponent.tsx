@@ -9,9 +9,10 @@ interface RadioButtonProps {
   qTitle : string;
   errors?: any;
   touched?: any;
+  radioStyle?: any;
 }
 
-export const RadioButton = ({options, name, qTitle, errors, touched}:RadioButtonProps) => {
+export const RadioButton = ({options, name, qTitle, errors, touched, radioStyle}:RadioButtonProps) => {
 
   const [field, meta, helpers] = useField(name);
 
@@ -22,11 +23,7 @@ export const RadioButton = ({options, name, qTitle, errors, touched}:RadioButton
     <View>
       <Text style={globalStyles.questionTitle}>{qTitle}</Text>
       <View
-        style = {{
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: "20%",
-        }}>
+        style = {radioStyle}>
           {options.map((option) => (
             <TouchableOpacity
               key = {option.value}

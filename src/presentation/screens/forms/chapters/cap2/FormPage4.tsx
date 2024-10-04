@@ -13,7 +13,7 @@ import { Prevcomponent } from '../../../../components/shared/PrevComponent';
 import { NextComponent } from '../../../../components/shared/NextComponent';
 import { DropDownComponent } from '../../../../components/shared/DropDownComponent';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
-import { opt21, opt22, opt23, opt24, opt25 } from '../../../../../utils/cap3/categoriesPage3';
+import { opt21, opt22, opt23, opt24, opt25 } from '../../../../../utils/cap3/categoriesPage4';
 import { DropDownInputComponent } from '../../../../components/shared/DropDownInputComponent';
 import { MultiCheckBox } from '../../../../components/shared/MultiCheckBoxComponent';
 import { InputComponent } from '../../../../components/shared/InputComponent';
@@ -52,7 +52,7 @@ export const FormPage4 = () => {
               }
               finally {
                 setSubmitting(false);
-                navigation.navigate('page3' as never)
+                navigation.navigate('page5' as never)
               }
             }}>
   
@@ -105,15 +105,15 @@ export const FormPage4 = () => {
                 <InputComponent
                     info='P26' 
                     textTitle='P26. ¿Por qué no cuentan con un mecanismo para el registro de los casos que atienden?'
-                    handleChange={(value: string) => setFieldValue('P20.response[0].responseuser[0]', value)}
-                    handleBlur={() => setFieldTouched('P20.response[0].responseuser[0]')}
+                    handleChange={(value: string) => setFieldValue('P26.response[0].responseuser[0]', value)}
+                    handleBlur={() => setFieldTouched('P26.response[0].responseuser[0]')}
                     values={values.P26.response[0].responseuser} 
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P26" />
 
 
                 <View style={globalStyles.buttonsBanner}>
-                  <Prevcomponent onPrevPressed={() => navigation.navigate('page3' as never)} />
+                  <Prevcomponent onPrevPressed={() => navigation.navigate('page4' as never)} />
                   <NextComponent onNextPress={handleSubmit} />
                 </View>
               </View>
