@@ -31,7 +31,7 @@ export const HomeScreen = () => {
   return (
     <View style={globalStyles.HomeScreenContainer}>
         <MainButton label='Nueva encuesta' onPress={handleNewSurvey}/>
-        <MainButton label='Procesar encuestas' onPress={() => navigation.navigate('page1' as never)}/>
+        <MainButton label='Procesar encuestas' onPress={() => navigation.navigate('surveysPage' as never)}/>
     </View>
   )
 }

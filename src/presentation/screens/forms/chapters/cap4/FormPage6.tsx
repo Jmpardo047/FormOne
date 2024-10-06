@@ -72,7 +72,7 @@ export const FormPage6 = () => {
                     
                     
                     <View>
-                        <Text>P31. Del siguiente listado, ¿Cuáles considera desde su competencia que son las principales 
+                        <Text style={globalStyles.questionTitle}>P31. Del siguiente listado, ¿Cuáles considera desde su competencia que son las principales 
                         barreras de acceso a la justicia que se presentan en este municipio?
                         </Text>
                         
@@ -82,6 +82,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_1}
                             qTitle='1.Culturales y lingüísticas'
                             checkboxOptions={opt32_1}
+                            description='Definición. Obstáculos o dificultades para la satisfacción de necesidades jurídicas en razón de la pertenencia a grupos culturales o lingüísticos minoritarios. '
                         />
 
                         <ConditionalMultiCheckBox
@@ -90,6 +91,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_2}
                             qTitle='2.De Género '
                             checkboxOptions={opt32_2}
+                            description='Definición. Obstáculos o dificultades para la satisfacción de necesidades jurídicas, en razón del sexo, la identidad de género, orientación sexual o expresión de género.'
                         />
 
                         
@@ -99,6 +101,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_3}
                             qTitle='3. De seguridad, orden público o asociadas al conflicto armado'
                             checkboxOptions={opt32_3}
+                            description='Definición. Obstáculos o dificultades para la satisfacción de una necesidad jurídica debido a la percepción de peligro frente la vida o la integridad personal.'
                         />
   
                         <ConditionalMultiCheckBox
@@ -107,6 +110,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_4}
                             qTitle='4. Discapacidad'
                             checkboxOptions={opt32_4}
+                            description='Definición. Obstáculos o dificultades para la satisfacción de necesidades jurídicas en razón de la condición de discapacidad de las personas.'
                         />
                         
                         <ConditionalMultiCheckBox
@@ -115,6 +119,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_5}
                             qTitle='5. Económicas'
                             checkboxOptions={opt32_5}
+                            description='Definición. Se refiere a las dificultades de las personas para asumir los costos que implica el acceso a los servicios de justicia o los obstáculos que enfrentan al encontrarse en situación de marginalidad económica. '
                         />
                         
                         <ConditionalMultiCheckBox
@@ -123,6 +128,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_6}
                             qTitle='6. Geográficas'
                             checkboxOptions={opt32_6}
+                            description='Definición. Obstáculos o dificultades para la satisfacción de necesidades jurídicas en razón de la ubicación geográfica, las distancias, medios y vías de comunicación o transporte.'
                         />
 
                         <ConditionalMultiCheckBox
@@ -131,6 +137,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_7}
                             qTitle='7. Institucionales'
                             checkboxOptions={opt32_7}
+                            description='Definición. Se refieren a dificultades en el acceso en razón a la estructura, políticas, procesos y dinámicas de los sistemas de justicia.'
                         />
 
                         <ConditionalMultiCheckBox
@@ -139,6 +146,7 @@ export const FormPage6 = () => {
                             dropdownOptions={opt31_8}
                             qTitle='8. Tecnológicas '
                             checkboxOptions={opt32_8}
+                            description='Definición. Dificultades en el acceso a la justicia por la falta de equipos, sistemas tecnológicos, redes o infraestructura de conectividad.'
                         />
 
                         <View style={globalStyles.buttonsBanner}>

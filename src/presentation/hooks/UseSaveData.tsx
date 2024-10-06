@@ -5,7 +5,7 @@ import { FormTemplate } from "../../utils/FormInterfaces";
 
 export const UseSaveData = () => {
         interface SurveyData {
-            surveys: Array<{
+            payload: Array<{
             nroEnCuesta: string;
             hora: string;
             responses: any[];
@@ -14,29 +14,28 @@ export const UseSaveData = () => {
         const saveAllData = useCallback( async (fileName:string, data: any, surveyId: string) => {
             try {
                 const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-                let currentData: SurveyData = { surveys: [] };
+                let currentData: SurveyData = { payload: [] };
 
 
                 const fileContent = await RNFS.readFile(path,'utf8');
                 currentData = JSON.parse(fileContent);
                 const dataEntries = Object.entries(data).map(([key, value]) => ({ key, value: value as FormTemplate }));
 
-                if(Array.isArray(currentData.surveys)) {
-                    const surveyIndex = currentData.surveys.findIndex((survey: any) => survey.nroEnCuesta === surveyId);
+                if(Array.isArray(currentData.payload)) {
+                    const surveyIndex = currentData.payload.findIndex((survey: any) => survey.nroEnCuesta === surveyId);
                     dataEntries.forEach(entry => {
-                        const responseIndex = currentData.surveys[surveyIndex].responses.findIndex((response: any) => response.qId === entry.value.qId);
+                        const responseIndex = currentData.payload[surveyIndex].responses.findIndex((response: any) => response.qId === entry.value.qId);
                         if (responseIndex !== -1) {
                           console.log(responseIndex)
-                          currentData.surveys[surveyIndex].responses[responseIndex] = entry.value;
+                          currentData.payload[surveyIndex].responses[responseIndex] = entry.value;
                         } else {
                           console.log(responseIndex)
-                          currentData.surveys[surveyIndex].responses.push(entry.value);
+                          currentData.payload[surveyIndex].responses.push(entry.value);
                         }
                     })
                 }
                 
                 await RNFS.writeFile(path, JSON.stringify(currentData, null, 2), 'utf8');
-                Alert.alert(`File ${fileName} updated`)
                     
             } catch (e) {
                 console.log('failed to save data',e);
@@ -73,7 +72,7 @@ export const UseSaveData = () => {
               const hours = String(now.getHours());
 
               const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-              let currentData: SurveyData = { surveys: [] }; // Inicializa con una estructura válida
+              let currentData: SurveyData = { payload: [] }; // Inicializa con una estructura válida
               const fileExists = await RNFS.exists(path);
               const newSurvey = {
                   nroEnCuesta: newSurveyId, 
@@ -87,17 +86,17 @@ export const UseSaveData = () => {
                   const fileContent = await RNFS.readFile(path, 'utf8');
                   currentData = JSON.parse(fileContent) as SurveyData;
       
-                  if (Array.isArray(currentData.surveys)) {
-                      currentData.surveys.push(newSurvey);
+                  if (Array.isArray(currentData.payload)) {
+                      currentData.payload.push(newSurvey);
                   } else {
-                      currentData.surveys = [newSurvey];
+                      currentData.payload = [newSurvey];
                   }
       
                   await RNFS.writeFile(path, JSON.stringify(currentData, null, 2), 'utf8');
                   Alert.alert(`File ${fileName} updated`);
               } else {
                   const newData: SurveyData = {
-                      surveys: [newSurvey]
+                      payload: [newSurvey]
                   };
                   const jsonValue = JSON.stringify(newData, null, 2);
                   await RNFS.writeFile(path, jsonValue, 'utf8');

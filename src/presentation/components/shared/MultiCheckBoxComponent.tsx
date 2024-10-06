@@ -38,7 +38,8 @@ export const MultiCheckBox = ({ options: initialOptions, name, qTitle }: Checkbo
     if (otherValue.trim()) {
       const newOption = { label: otherValue, value: otherValue.toLowerCase().replace(/\s+/g, '-') };
       setOptions([...options, newOption]);
-      setValue([...value, newOption.value]);
+      const updatedValues = value.filter((item: string) => item !== '61');
+      setValue([...updatedValues, newOption.value]);
       setOtherValue('');
       setShowOtherInput(false);
     }
@@ -47,66 +48,38 @@ export const MultiCheckBox = ({ options: initialOptions, name, qTitle }: Checkbo
   return (
     <View>
       <Text style={globalStyles.questionTitle}>{qTitle}</Text>
-      <View>
+      <View style={globalStyles.optionsContainer}>
         {options.map((option) => (
           <TouchableOpacity
             key={option.value}
-            style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 5 }}
+            style={globalStyles.checkboxContainer}
             onPress={() => handleCheckboxChange(option.value)}
           >
-            <View
-              style={{
-                height: 20,
-                width: 20,
-                borderRadius: 3,
-                borderWidth: 2,
-                borderColor: '#000',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginRight: 10,
-              }}
-            >
+            <View style={globalStyles.checkbox}>
               {value?.includes(option.value) && (
-                <View
-                  style={{
-                    height: 12,
-                    width: 12,
-                    backgroundColor: '#000',
-                  }}
-                />
+                <View style={globalStyles.checkboxSelected} />
               )}
             </View>
-            <Text>{option.label}</Text>
+            <Text style={globalStyles.optionText}>{option.label}</Text>
           </TouchableOpacity>
         ))}
       </View>
       {showOtherInput && (
-        <View style={{ marginTop: 10 }}>
+        <View style={globalStyles.otherInputContainer}>
           <TextInput
-            style={{
-              borderWidth: 1,
-              borderColor: '#000',
-              borderRadius: 3,
-              padding: 5,
-              marginBottom: 5,
-            }}
+            style={globalStyles.otherInput}
             value={otherValue}
             onChangeText={setOtherValue}
             placeholder="cuál?"
           />
           <TouchableOpacity
-            style={{
-              backgroundColor: '#000',
-              padding: 10,
-              borderRadius: 3,
-              alignItems: 'center',
-            }}
+            style={globalStyles.addButton}
             onPress={handleAddOther}
           >
-            <Text style={{ color: '#fff' }}>Agregar</Text>
+            <Text style={globalStyles.addButtonText}>Agregar</Text>
           </TouchableOpacity>
         </View>
       )}
     </View>
   );
-};  
+};

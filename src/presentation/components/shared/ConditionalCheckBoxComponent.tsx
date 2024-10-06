@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useField } from 'formik';
 import { globalStyles } from '../../theme/theme';
@@ -13,6 +13,7 @@ interface ConditionalMultiCheckBoxProps {
   checkboxName: string;
   dropdownName: string;
   qTitle: string;
+  description : string;
   checkboxOptions: Option[];
   dropdownOptions: Option[];
 }
@@ -22,7 +23,8 @@ export const ConditionalMultiCheckBox = ({
   dropdownName, 
   qTitle, 
   checkboxOptions, 
-  dropdownOptions 
+  dropdownOptions,
+  description 
 }: ConditionalMultiCheckBoxProps) => {
   const [checkboxField, checkboxMeta, checkboxHelpers] = useField(checkboxName);
   const [dropdownField, dropdownMeta, dropdownHelpers] = useField(dropdownName);
@@ -60,91 +62,71 @@ export const ConditionalMultiCheckBox = ({
     if (otherValue.trim()) {
       const newOption = { label: otherValue, value: otherValue.toLowerCase().replace(/\s+/g, '-') };
       setOptions([...options, newOption]);
-      checkboxHelpers.setValue([...checkboxField.value, newOption.value]);
+      const currentValues = checkboxField.value || [];
+      const updatedValues = currentValues.filter((item: string) => item !== '61');
+      checkboxHelpers.setValue([...updatedValues, newOption.value]);
       setOtherValue('');
       setShowOtherInput(false);
     }
   };
 
   return (
-    <View>
-      <Text style={globalStyles.questionTitle}>{qTitle}</Text>
-      <View style={globalStyles.picker}>
-        <Picker
-          selectedValue={dropdownField.value}
-          onValueChange={handleDropDownChange}
-        >
-          <Picker.Item label="Seleccione una opción" value="" />
-          {dropdownOptions.map((option) => (
-            <Picker.Item key={option.value} label={option.label} value={option.value} />
-          ))}
-        </Picker>
-      </View>
-      {showMultiCheckBox && (
-        <View>
-          <Text>P. 32. ¿Cuáles de las siguientes subcategorías de barreras de acceso 
-          a la justicia se presentan en el municipio?Marcar con X
-          </Text>
-          {options.map((option) => (
-            <TouchableOpacity
-              key={option.value}
-              style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 5 }}
-              onPress={() => handleCheckboxChange(option.value)}
-            >
-              <View
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: 3,
-                  borderWidth: 2,
-                  borderColor: '#000',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: 10,
-                }}
-              >
-                {checkboxField.value?.includes(option.value) && (
-                  <View
-                    style={{
-                      height: 12,
-                      width: 12,
-                      backgroundColor: '#000',
-                    }}
-                  />
-                )}
-              </View>
-              <Text>{option.label}</Text>
-            </TouchableOpacity>
-          ))}
-          {showOtherInput && (
-            <View style={{ marginTop: 10 }}>
-              <TextInput
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#000',
-                  borderRadius: 3,
-                  padding: 5,
-                  marginBottom: 5,
-                }}
-                value={otherValue}
-                onChangeText={setOtherValue}
-                placeholder="cuál?"
-              />
-              <TouchableOpacity
-                style={{
-                  backgroundColor: '#000',
-                  padding: 10,
-                  borderRadius: 3,
-                  alignItems: 'center',
-                }}
-                onPress={handleAddOther}
-              >
-                <Text style={{ color: '#fff' }}>Agregar</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+    <ScrollView>
+      <View>
+        <Text style={globalStyles.questionTitle}>{qTitle}</Text>
+        <Text style = {globalStyles.descriptioText}>{description}</Text>
+        <View style={globalStyles.picker}>
+          <Picker
+            selectedValue={dropdownField.value}
+            onValueChange={handleDropDownChange}
+          >
+            <Picker.Item label="Seleccione una opción" value="" />
+            {dropdownOptions.map((option) => (
+              <Picker.Item key={option.value} label={option.label} value={option.value} />
+            ))}
+          </Picker>
         </View>
-      )}
-    </View>
+        {showMultiCheckBox && (
+          <View>
+            <Text style={globalStyles.questionTitle}>
+              P. 32. ¿Cuáles de las siguientes subcategorías de barreras de acceso 
+              a la justicia se presentan en el municipio? Marcar con X
+            </Text>
+            <View style={globalStyles.optionsContainer}>
+              {options.map((option) => (
+                <TouchableOpacity
+                  key={option.value}
+                  style={globalStyles.checkboxContainer}
+                  onPress={() => handleCheckboxChange(option.value)}
+                >
+                  <View style={globalStyles.checkbox}>
+                    {checkboxField.value?.includes(option.value) && (
+                      <View style={globalStyles.checkboxSelected} />
+                    )}
+                  </View>
+                  <Text style={globalStyles.optionText}>{option.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+            {showOtherInput && (
+              <View style={globalStyles.otherInputContainer}>
+                <TextInput
+                  style={globalStyles.otherInput}
+                  value={otherValue}
+                  onChangeText={setOtherValue}
+                  placeholder="cuál?"
+                />
+                <TouchableOpacity
+                  style={globalStyles.addButton}
+                  onPress={handleAddOther}
+                >
+                  <Text style={globalStyles.addButtonText}>Agregar</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
+    </ScrollView>
   );
 };

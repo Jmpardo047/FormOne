@@ -68,7 +68,7 @@ export const FormPage7 = () => {
                 {({handleChange, handleBlur,handleSubmit,values, setFieldValue, setFieldTouched, errors, touched}) =>(
                     <View>
 
-                        <Text>P33. Del siguiente listado de problemas / desacuerdos / conflictos y disputas 
+                        <Text style = {globalStyles.Titleout}>P33. Del siguiente listado de problemas / desacuerdos / conflictos y disputas 
                         ¿Cuáles tramita usted con mayor frecuencia, de conformidad al cargo u ocupación que desempeña en la entidad / organización o comunidad que representa?</Text>
 
                         <DropDownComponent

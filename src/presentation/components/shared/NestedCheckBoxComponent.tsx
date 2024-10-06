@@ -40,7 +40,6 @@ export const NestedCheckBox = ({
     if (currentValues.includes(selectedValue)) {
       mainHelpers.setValue(currentValues.filter((item: string) => item !== selectedValue));
       setExpandedOption(null);
-      // Deselect all sub-options and reset counter when main option is deselected
       subFields.forEach(([_, __, subHelper]) => {
         subHelper.setValue([]);
       });
@@ -68,86 +67,45 @@ export const NestedCheckBox = ({
   const renderMainCheckbox = (option: { label: string; value: string }) => (
     <View key={option.value}>
       <TouchableOpacity
-        style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 5 }}
+        style={globalStyles.nestedOptionWrapper}
         onPress={() => handleMainCheckboxChange(option.value)}
       >
-        <View
-          style={{
-            height: 20,
-            width: 20,
-            borderRadius: 3,
-            borderWidth: 2,
-            borderColor: '#000',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginRight: 10,
-          }}
-        >
+        <View style={globalStyles.nestedCheckmark}>
           {mainField.value?.includes(option.value) && (
-            <View
-              style={{
-                height: 12,
-                width: 12,
-                backgroundColor: '#000',
-              }}
-            />
+            <View style={globalStyles.nestedCheckmarkSelected} />
           )}
         </View>
-        <Text>{option.label}</Text>
+        <Text style={globalStyles.nestedOptionLabel}>{option.label}</Text>
       </TouchableOpacity>
       {expandedOption === option.value && renderSubOptions()}
     </View>
   );
 
   const renderSubOptions = () => (
-    <View style={{ marginLeft: 20 }}>
+    <View style={globalStyles.nestedSubOptionsContainer}>
       {subNames.map((subName, index) => (
         <View key={subName}>
-          <Text style={globalStyles.questionTitle}>{subQTitles[index]}</Text>
+          <Text style={globalStyles.nestedQuestionHeader}>{subQTitles[index]}</Text>
           {subOptions[index].map((subOption) => (
             <TouchableOpacity
               key={`${subName}-${subOption.value}`}
-              style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 5 }}
+              style={globalStyles.nestedOptionWrapper}
               onPress={() => handleSubCheckboxChange(index, subOption.value)}
             >
-              <View
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: 3,
-                  borderWidth: 2,
-                  borderColor: '#000',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: 10,
-                }}
-              >
+              <View style={globalStyles.nestedCheckmark}>
                 {subFields[index][0].value?.includes(subOption.value) && (
-                  <View
-                    style={{
-                      height: 12,
-                      width: 12,
-                      backgroundColor: '#000',
-                    }}
-                  />
+                  <View style={globalStyles.nestedCheckmarkSelected} />
                 )}
               </View>
-              <Text>{subOption.label}</Text>
+              <Text style={globalStyles.nestedOptionLabel}>{subOption.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
       ))}
       <View>
-        <Text style={globalStyles.questionTitle}>{counterQTitle}</Text>
+        <Text style={globalStyles.nestedQuestionHeader}>{counterQTitle}</Text>
         <TextInput
-          style={{
-            borderWidth: 1,
-            borderColor: '#000',
-            borderRadius: 3,
-            padding: 5,
-            marginTop: 5,
-            width: 100,
-          }}
+          style={globalStyles.nestedCounterField}
           keyboardType="numeric"
           value={counterField.value}
           onChangeText={handleCounterChange}
@@ -158,6 +116,7 @@ export const NestedCheckBox = ({
 
   return (
     <View>
+      <Text style={globalStyles.nestedQuestionHeader}>{mainQTitle}</Text>
       <View>
         {mainOptions.map(renderMainCheckbox)}
       </View>

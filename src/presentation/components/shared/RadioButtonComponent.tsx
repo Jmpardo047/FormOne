@@ -22,35 +22,25 @@ export const RadioButton = ({options, name, qTitle, errors, touched, radioStyle}
   return (
     <View>
       <Text style={globalStyles.questionTitle}>{qTitle}</Text>
-      <View
-        style = {radioStyle}>
-          {options.map((option) => (
-            <TouchableOpacity
-              key = {option.value}
-              style = {globalStyles.radioButton}
-              onPress={() => setValue(option.value)}
-            >
-              <View
-                style={globalStyles.ButtonSelector}
-              >
-                {value == option.value && (
-                  <View
-                    style={{
-                      height: 10,
-                      width: 10,
-                      borderRadius: 5,
-                      backgroundColor: '#000',
-                  }}
-                  />
-                )}
-              </View>
-              <Text>{option.label}</Text>
-            </TouchableOpacity>
-          ))}
-            {errors && touched && errors[name] && touched[name] && (
-          <Text style={{ color: 'red' }}>{errors[name]}</Text>
+      <View style={radioStyle}>
+        {options.map((option) => (
+          <TouchableOpacity
+            key={option.value}
+            style={globalStyles.radioButton}
+            onPress={() => setValue(option.value)}
+          >
+            <View style={globalStyles.ButtonSelector}>
+              {value === option.value && (
+                <View style={globalStyles.ButtonSelectorSelected} />
+              )}
+            </View>
+            <Text>{option.label}</Text>
+          </TouchableOpacity>
+        ))}
+        {errors && touched && errors[name] && touched[name] && (
+          <Text style={globalStyles.errorText}>{errors[name]}</Text>
         )}
-        </View>
+      </View>
     </View>
   )
 }

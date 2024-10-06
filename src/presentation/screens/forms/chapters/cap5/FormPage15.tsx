@@ -10,72 +10,73 @@ import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler';
 import { FormTemplate } from '../../../../../utils/FormInterfaces';
 import { fileName } from '../../../../../utils/generateFilename';
-import { getInitialValuesPage11 } from '../../../../../utils/initialValues';
+import { getInitialValuesPage15 } from '../../../../../utils/initialValues';
 import { validationSchemaPage3 } from '../../../../../utils/cap2/validationSchema';
 import { NestedCheckBox } from '../../../../components/shared/NestedCheckBoxComponent';
-import { opt34_5_1, opt35_5_1, opt36_5_1, opt37_5_1, opt34_5_2, opt35_5_2, opt36_5_2, opt37_5_2, opt34_5_3, opt35_5_3, opt36_5_3, opt37_5_3, opt34_5_4, opt35_5_4, opt36_5_4, opt37_5_4, opt34_5_5, opt35_5_5, opt36_5_5, opt37_5_5, opt34_5_6, opt35_5_6, opt36_5_6, opt37_5_6, opt34_5_7, opt35_5_7, opt36_5_7, opt37_5_7, opt34_5_8, opt35_5_8, opt36_5_8, opt37_5_8, opt34_5_9, opt35_5_9, opt36_5_9, opt37_5_9, opt34_5_10, opt35_5_10, opt36_5_10, opt37_5_10 } from '../../../../../utils/cap5/categoriesPage11';
+import { opt34_11_1, opt35_11_1, opt36_11_1, opt37_11_1, opt34_11_2, opt35_11_2, opt36_11_2, opt37_11_2, opt34_11_3, opt35_11_3, opt36_11_3, opt37_11_3, opt34_11_4, opt35_11_4, opt36_11_4, opt37_11_4, opt34_11_5, opt35_11_5, opt36_11_5, opt37_11_5, opt34_11_6, opt35_11_6, opt36_11_6, opt37_11_6, opt34_11_7, opt35_11_7, opt36_11_7, opt37_11_7, opt34_11_8, opt35_11_8, opt36_11_8, opt37_11_8, opt34_11_9, opt35_11_9, opt36_11_9, opt37_11_9, opt34_11_10, opt35_11_10, opt36_11_10, opt37_11_10 } from '../../../../../utils/cap5/categoriesPage15';
 
 export interface FormValues {
-    P34_5_1: FormTemplate;
-    P35_5_1: FormTemplate;
-    P36_5_1: FormTemplate;
-    P37_5_1: FormTemplate;
-    P38_5_1: FormTemplate;
-    P34_5_2: FormTemplate;
-    P35_5_2: FormTemplate;
-    P36_5_2: FormTemplate;
-    P37_5_2: FormTemplate;
-    P38_5_2: FormTemplate;
-    P34_5_3: FormTemplate;
-    P35_5_3: FormTemplate;
-    P36_5_3: FormTemplate;
-    P37_5_3: FormTemplate;
-    P38_5_3: FormTemplate;
-    P34_5_4: FormTemplate;
-    P35_5_4: FormTemplate;
-    P36_5_4: FormTemplate;
-    P37_5_4: FormTemplate;
-    P38_5_4: FormTemplate;
-    P34_5_5: FormTemplate;
-    P35_5_5: FormTemplate;
-    P36_5_5: FormTemplate;
-    P37_5_5: FormTemplate;
-    P38_5_5: FormTemplate;
-    P34_5_6: FormTemplate;
-    P35_5_6: FormTemplate;
-    P36_5_6: FormTemplate;
-    P37_5_6: FormTemplate;
-    P38_5_6: FormTemplate;
-    P34_5_7: FormTemplate;
-    P35_5_7: FormTemplate;
-    P36_5_7: FormTemplate;
-    P37_5_7: FormTemplate;
-    P38_5_7: FormTemplate;
-    P34_5_8: FormTemplate;
-    P35_5_8: FormTemplate;
-    P36_5_8: FormTemplate;
-    P37_5_8: FormTemplate;
-    P38_5_8: FormTemplate;
-    P34_5_9: FormTemplate;
-    P35_5_9: FormTemplate;
-    P36_5_9: FormTemplate;
-    P37_5_9: FormTemplate;
-    P38_5_9: FormTemplate;
-    P34_5_10: FormTemplate;
-    P35_5_10: FormTemplate;
-    P36_5_10: FormTemplate;
-    P37_5_10: FormTemplate;
-    P38_5_10: FormTemplate;
+    P34_11_1: FormTemplate;
+    P35_11_1: FormTemplate;
+    P36_11_1: FormTemplate;
+    P37_11_1: FormTemplate;
+    P38_11_1: FormTemplate;
+    P34_11_2: FormTemplate;
+    P35_11_2: FormTemplate;
+    P36_11_2: FormTemplate;
+    P37_11_2: FormTemplate;
+    P38_11_2: FormTemplate;
+    P34_11_3: FormTemplate;
+    P35_11_3: FormTemplate;
+    P36_11_3: FormTemplate;
+    P37_11_3: FormTemplate;
+    P38_11_3: FormTemplate;
+    P34_11_4: FormTemplate;
+    P35_11_4: FormTemplate;
+    P36_11_4: FormTemplate;
+    P37_11_4: FormTemplate;
+    P38_11_4: FormTemplate;
+    P34_11_5: FormTemplate;
+    P35_11_5: FormTemplate;
+    P36_11_5: FormTemplate;
+    P37_11_5: FormTemplate;
+    P38_11_5: FormTemplate;
+    P34_11_6: FormTemplate;
+    P35_11_6: FormTemplate;
+    P36_11_6: FormTemplate;
+    P37_11_6: FormTemplate;
+    P38_11_6: FormTemplate;
+    P34_11_7: FormTemplate;
+    P35_11_7: FormTemplate;
+    P36_11_7: FormTemplate;
+    P37_11_7: FormTemplate;
+    P38_11_7: FormTemplate;
+    P34_11_8: FormTemplate;
+    P35_11_8: FormTemplate;
+    P36_11_8: FormTemplate;
+    P37_11_8: FormTemplate;
+    P38_11_8: FormTemplate;
+    P34_11_9: FormTemplate;
+    P35_11_9: FormTemplate;
+    P36_11_9: FormTemplate;
+    P37_11_9: FormTemplate;
+    P38_11_9: FormTemplate;
+    P34_11_10: FormTemplate;
+    P35_11_10: FormTemplate;
+    P36_11_10: FormTemplate;
+    P37_11_10: FormTemplate;
+    P38_11_10: FormTemplate;
+    
 }
 
 
 
-export const FormPage11 = () => {
+export const FormPage15 = () => {
     const navigation = useNavigation();
     const {saveAllData} = UseSaveData();
     const { surveyId } = useContext(SurveyContext);
     const finalSurveyId = surveyId ?? "defaultSurveyId";
-    const initialValues: FormValues = getInitialValuesPage11();
+    const initialValues: FormValues = getInitialValuesPage15();
     return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -88,7 +89,7 @@ export const FormPage11 = () => {
             </View>
 
             <View style={globalStyles.CapTitle}>
-                <Text style={globalStyles.Title}>6. Deudas y dinero</Text>
+                <Text style={globalStyles.Title}>11. Relación con el Estado</Text>
             </View>
 
             <Formik
@@ -103,19 +104,19 @@ export const FormPage11 = () => {
                 }
                 finally{
                     setSubmitting(false);
-                    navigation.navigate('page12' as never)
+                    navigation.navigate('page16' as never)
                 }}
                 }>
                 {({handleChange, handleBlur,handleSubmit,values, setFieldValue, setFieldTouched, errors, touched}) =>(
                     <View>
                         
                         <NestedCheckBox
-                            mainOptions={opt34_5_1}
-                            subOptions={[opt35_5_1,opt36_5_1,opt37_5_1]}
-                            mainName='P34_5_1.response[0].responseuser'
-                            subNames={['P35_5_1.response[0].responseuser','P36_5_1.response[0].responseuser','P37_5_1.response[0].responseuser']}
-                            counterName='P38_5_1.response[0].responseuser'
-                            mainQTitle='5.1 Deudas en forma de letras de cambio, pagarés u otros instrumentos contraídos con particulares'
+                            mainOptions={opt34_11_1}
+                            subOptions={[opt35_11_1,opt36_11_1,opt37_11_1]}
+                            mainName='P34_11_1.response[0].responseuser'
+                            subNames={['P35_11_1.response[0].responseuser','P36_11_1.response[0].responseuser','P37_11_1.response[0].responseuser']}
+                            counterName='P38_11_1.response[0].responseuser'
+                            mainQTitle='11.1 Daños o perjuicios ocasionados por actuaciones de instituciones públicas o autoridades del Estado'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -123,12 +124,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_2}
-                            subOptions={[opt35_5_2,opt36_5_2,opt37_5_2]}
-                            mainName='P34_5_2.response[0].responseuser'
-                            subNames={['P35_5_2.response[0].responseuser','P36_5_2.response[0].responseuser','P37_5_2.response[0].responseuser']}
-                            counterName='P38_5_2.response[0].responseuser'
-                            mainQTitle='5.2 Usura o intereses elevados en préstamos con particulares'
+                            mainOptions={opt34_11_2}
+                            subOptions={[opt35_11_2,opt36_11_2,opt37_11_2]}
+                            mainName='P34_11_2.response[0].responseuser'
+                            subNames={['P35_11_2.response[0].responseuser','P36_11_2.response[0].responseuser','P37_11_2.response[0].responseuser']}
+                            counterName='P38_11_2.response[0].responseuser'
+                            mainQTitle='11.2 Expropiaciones'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -136,12 +137,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_3}
-                            subOptions={[opt35_5_3,opt36_5_3,opt37_5_3]}
-                            mainName='P34_5_3.response[0].responseuser'
-                            subNames={['P35_5_3.response[0].responseuser','P36_5_3.response[0].responseuser','P37_5_3.response[0].responseuser']}
-                            counterName='P38_5_3.response[0].responseuser'
-                            mainQTitle='5.3 Embargo y secuestro del bien por deudas contraidas con particulares'
+                            mainOptions={opt34_11_3}
+                            subOptions={[opt35_11_3,opt36_11_3,opt37_11_3]}
+                            mainName='P34_11_3.response[0].responseuser'
+                            subNames={['P35_11_3.response[0].responseuser','P36_11_3.response[0].responseuser','P37_11_3.response[0].responseuser']}
+                            counterName='P38_11_3.response[0].responseuser'
+                            mainQTitle='11.3 Deficiencia en los servicios prestados por el Estado diferentes de los servicios públicos domiciliarios.'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -149,12 +150,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_4}
-                            subOptions={[opt35_5_4,opt36_5_4,opt37_5_4]}
-                            mainName='P34_5_4.response[0].responseuser'
-                            subNames={['P35_5_4.response[0].responseuser','P36_5_4.response[0].responseuser','P37_5_4.response[0].responseuser']}
-                            counterName='P38_5_4.response[0].responseuser'
-                            mainQTitle='5.4 Deudas como tarjetas de crédito, libre inversión, créditos hipotecarios y otras carteras con entidades financieras y solidarias'
+                            mainOptions={opt34_11_4}
+                            subOptions={[opt35_11_4,opt36_11_4,opt37_11_4]}
+                            mainName='P34_11_4.response[0].responseuser'
+                            subNames={['P35_11_4.response[0].responseuser','P36_11_4.response[0].responseuser','P37_11_4.response[0].responseuser']}
+                            counterName='P38_11_4.response[0].responseuser'
+                            mainQTitle='11.4 Abuso de la autoridad estatal'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -162,12 +163,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_5}
-                            subOptions={[opt35_5_5,opt36_5_5,opt37_5_5]}
-                            mainName='P34_5_5.response[0].responseuser'
-                            subNames={['P35_5_5.response[0].responseuser','P36_5_5.response[0].responseuser','P37_5_5.response[0].responseuser']}
-                            counterName='P38_5_5.response[0].responseuser'
-                            mainQTitle='5.5 Usura o intereses elevados en préstamos con el sector financiero y solidario'
+                            mainOptions={opt34_11_5}
+                            subOptions={[opt35_11_5,opt36_11_5,opt37_11_5]}
+                            mainName='P34_11_5.response[0].responseuser'
+                            subNames={['P35_11_5.response[0].responseuser','P36_11_5.response[0].responseuser','P37_11_5.response[0].responseuser']}
+                            counterName='P38_11_5.response[0].responseuser'
+                            mainQTitle='11.5 Pago y/o cobro de impuesto, multas y sanciones (asuntos de carácter tributario)'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -175,12 +176,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_6}
-                            subOptions={[opt35_5_6,opt36_5_6,opt37_5_6]}
-                            mainName='P34_5_6.response[0].responseuser'
-                            subNames={['P35_5_6.response[0].responseuser','P36_5_6.response[0].responseuser','P37_5_6.response[0].responseuser']}
-                            counterName='P38_5_6.response[0].responseuser'
-                            mainQTitle='5.6 Procesos ejecutivos, embargo, secuestro del bien, hipotecas, remates y lanzamientos con el sector financiero y solidario'
+                            mainOptions={opt34_11_6}
+                            subOptions={[opt35_11_6,opt36_11_6,opt37_11_6]}
+                            mainName='P34_11_6.response[0].responseuser'
+                            subNames={['P35_11_6.response[0].responseuser','P36_11_6.response[0].responseuser','P37_11_6.response[0].responseuser']}
+                            counterName='P38_11_6.response[0].responseuser'
+                            mainQTitle='11.6 Negación en obtención de documentos, en la realización de trámites, procesos ante el Estado'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -188,12 +189,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_7}
-                            subOptions={[opt35_5_7,opt36_5_7,opt37_5_7]}
-                            mainName='P34_5_7.response[0].responseuser'
-                            subNames={['P35_5_7.response[0].responseuser','P36_5_7.response[0].responseuser','P37_5_7.response[0].responseuser']}
-                            counterName='P38_5_7.response[0].responseuser'
-                            mainQTitle='5.7 Reportes a centrales de riesgo'
+                            mainOptions={opt34_11_7}
+                            subOptions={[opt35_11_7,opt36_11_7,opt37_11_7]}
+                            mainName='P34_11_7.response[0].responseuser'
+                            subNames={['P35_11_7.response[0].responseuser','P36_11_7.response[0].responseuser','P37_11_7.response[0].responseuser']}
+                            counterName='P38_11_7.response[0].responseuser'
+                            mainQTitle='11.7 Problemas relacionados con comparendos de tránsito, por contravenciones (notificación tardía, no conformidad)'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -201,12 +202,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_8}
-                            subOptions={[opt35_5_8,opt36_5_8,opt37_5_8]}
-                            mainName='P34_5_8.response[0].responseuser'
-                            subNames={['P35_5_8.response[0].responseuser','P36_5_8.response[0].responseuser','P37_5_8.response[0].responseuser']}
-                            counterName='P38_5_8.response[0].responseuser'
-                            mainQTitle='5.8 Deudas por créditos educativos'
+                            mainOptions={opt34_11_8}
+                            subOptions={[opt35_11_8,opt36_11_8,opt37_11_8]}
+                            mainName='P34_11_8.response[0].responseuser'
+                            subNames={['P35_11_8.response[0].responseuser','P36_11_8.response[0].responseuser','P37_11_8.response[0].responseuser']}
+                            counterName='P38_11_8.response[0].responseuser'
+                            mainQTitle='11.8 Ejecución o incumplimiento de un contrato estatal (menos contratos laborales)'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -214,12 +215,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_9}
-                            subOptions={[opt35_5_9,opt36_5_9,opt37_5_9]}
-                            mainName='P34_5_9.response[0].responseuser'
-                            subNames={['P35_5_9.response[0].responseuser','P36_5_9.response[0].responseuser','P37_5_9.response[0].responseuser']}
-                            counterName='P38_5_9.response[0].responseuser'
-                            mainQTitle='5.9 Pago de intereses por deudas educativas'
+                            mainOptions={opt34_11_9}
+                            subOptions={[opt35_11_9,opt36_11_9,opt37_11_9]}
+                            mainName='P34_11_9.response[0].responseuser'
+                            subNames={['P35_11_9.response[0].responseuser','P36_11_9.response[0].responseuser','P37_11_9.response[0].responseuser']}
+                            counterName='P38_11_9.response[0].responseuser'
+                            mainQTitle='11.9 Trámites de naturalización de migrantes y expedición de documentos'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -227,12 +228,12 @@ export const FormPage11 = () => {
                         />
 
                         <NestedCheckBox
-                            mainOptions={opt34_5_10}
-                            subOptions={[opt35_5_10,opt36_5_10,opt37_5_10]}
-                            mainName='P34_5_10.response[0].responseuser'
-                            subNames={['P35_5_10.response[0].responseuser','P36_5_10.response[0].responseuser','P37_5_10.response[0].responseuser']}
-                            counterName='P38_5_10.response[0].responseuser'
-                            mainQTitle='5.10 Quiebra o insolvencia de personas naturales'
+                            mainOptions={opt34_11_10}
+                            subOptions={[opt35_11_10,opt36_11_10,opt37_11_10]}
+                            mainName='P34_11_10.response[0].responseuser'
+                            subNames={['P35_11_10.response[0].responseuser','P36_11_10.response[0].responseuser','P37_11_10.response[0].responseuser']}
+                            counterName='P38_11_10.response[0].responseuser'
+                            mainQTitle='11.10 Daños o perjuicios ocasionados por actuaciones de funcionarios judiciales, auxiliares de la justicia y abogados litigantes.'
                             subQTitles={['P35. ¿En qué zonas del municipio se están presentando estos problemas / desacuerdos / conflictos y disputas?',
                             'P36. ¿Existe ruta/protocolo de atención para estos problemas / desacuerdos / conflictos y disputas?',
                             'P37. ¿Existe material pedagógico para comunicar la ruta/protocolo de atención a la comunidad?']}
@@ -240,7 +241,7 @@ export const FormPage11 = () => {
                         />
 
                         <View style={globalStyles.buttonsBanner}>
-                            <Prevcomponent onPrevPressed={() => navigation.navigate('page10' as never)}/>
+                            <Prevcomponent onPrevPressed={() => navigation.navigate('page14' as never)}/>
                             <NextComponent onNextPress={handleSubmit} />
                         </View> 
                     </View>

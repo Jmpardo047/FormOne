@@ -113,7 +113,7 @@ export const FormPage4 = () => {
 
 
                 <View style={globalStyles.buttonsBanner}>
-                  <Prevcomponent onPrevPressed={() => navigation.navigate('page4' as never)} />
+                  <Prevcomponent onPrevPressed={() => navigation.navigate('page3' as never)} />
                   <NextComponent onNextPress={handleSubmit} />
                 </View>
               </View>

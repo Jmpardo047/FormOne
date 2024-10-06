@@ -11,7 +11,17 @@ import { FormPage7 } from '../screens/forms/chapters/cap5/FormPage7';
 import { FormPage8 } from '../screens/forms/chapters/cap5/FormPage8';
 import { FormPage9 } from '../screens/forms/chapters/cap5/FormPage9';
 import { FormPage10 } from '../screens/forms/chapters/cap5/FormPage10';
-import { FormPage11 } from '../screens/forms/chapters/cap5/Formpage11';
+import { FormPage11 } from '../screens/forms/chapters/cap5/FormPage11';
+import { FormPage12 } from '../screens/forms/chapters/cap5/FormPage12';
+import { FormPage13 } from '../screens/forms/chapters/cap5/FormPage13';
+import { FormPage14 } from '../screens/forms/chapters/cap5/FormPage14';
+import { FormPage15 } from '../screens/forms/chapters/cap5/FormPage15';
+import { FormPage16 } from '../screens/forms/chapters/cap5/FormPage16';
+import { FormPage17 } from '../screens/forms/chapters/cap5/FormPage17';
+import { FormPage18 } from '../screens/forms/chapters/cap5/FormPage18';
+import { FormPage19 } from '../screens/forms/chapters/cap6/FormPage19';
+import { FormPage20 } from '../screens/forms/chapters/cap6/FormPage20';
+import { JsonFileReader } from '../screens/forms/post/SurveysList';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +36,7 @@ export const AppNavigator = () => {
     }}>
 
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="surveysPage" component={JsonFileReader} />
       <Stack.Screen name="page1" component={FormPage1} />
       <Stack.Screen name="page2" component={FormPage2} />
       <Stack.Screen name="page3" component={FormPage3} />
@@ -37,6 +48,15 @@ export const AppNavigator = () => {
       <Stack.Screen name="page9" component={FormPage9} />
       <Stack.Screen name="page10" component={FormPage10} />
       <Stack.Screen name="page11" component={FormPage11} />
+      <Stack.Screen name="page12" component={FormPage12} />
+      <Stack.Screen name="page13" component={FormPage13} />
+      <Stack.Screen name="page14" component={FormPage14} />
+      <Stack.Screen name="page15" component={FormPage15} />
+      <Stack.Screen name="page16" component={FormPage16} />
+      <Stack.Screen name="page17" component={FormPage17} />
+      <Stack.Screen name="page18" component={FormPage18} />
+      <Stack.Screen name="page19" component={FormPage19} />
+      <Stack.Screen name="page20" component={FormPage20} />
     </Stack.Navigator>
   );
 }
