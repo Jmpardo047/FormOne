@@ -1,84 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import RNFS from 'react-native-fs';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+import { useSurveyProcessor } from '../../../hooks/UseSurveyProcessor';
 
 interface JsonFile {
   name: string;
   content: any;
+  selected: boolean;
 }
 
-export const  JsonFileReader = () => {
-  const [files, setFiles] = useState<JsonFile[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<JsonFile | null>(null);
+export const SurveyProcessor: React.FC = () => {
+  const { files, error, isProcessing, toggleFileSelection, processSurveys } = useSurveyProcessor();
 
-  useEffect(() => {
-    readJsonFiles();
-  }, []);
-
-  const readJsonFiles = async () => {
-    try {
-      const path = '/data/data/com.formone/files';
-      const result = await RNFS.readDir(path);
-      const jsonFiles = result.filter(file => file.name.endsWith('.json'));
-
-      const fileContents = await Promise.all(
-        jsonFiles.map(async (file) => {
-          const content = await RNFS.readFile(file.path, 'utf8');
-          return { name: file.name, content: JSON.parse(content) };
-        })
-      );
-
-      setFiles(fileContents);
-    } catch (err) {
-      setError('Error reading files: ' + err);
-    }
-  };
-
-  const renderFileItem = ({ item }: { item: JsonFile }) => (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() => setSelectedFile(item)}
-    >
+  const renderFileItem = ({ item, index }: { item: JsonFile; index: number }) => (
+    <View style={styles.itemContainer}>
+      <CheckBox
+        disabled={isProcessing}
+        value={item.selected}
+        onValueChange={() => toggleFileSelection(index)}
+      />
       <Text style={styles.itemText}>{item.name}</Text>
-    </TouchableOpacity>
+    </View>
   );
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>JSON Files in /data/data/com.formone/files:</Text>
-      {error ? (
-        <Text style={styles.error}>{error}</Text>
-      ) : (
-        <FlatList
-          data={files}
-          renderItem={renderFileItem}
-          keyExtractor={(item) => item.name}
-        />
-      )}
-      <Modal
-        visible={selectedFile !== null}
-        transparent={true}
-        animationType="slide"
+      <Text style={styles.title}>Select Surveys to Process:</Text>
+      <FlatList
+        data={files}
+        renderItem={renderFileItem}
+        keyExtractor={(item) => item.name}
+      />
+      <TouchableOpacity
+        style={[styles.processButton, isProcessing && styles.processButtonDisabled]}
+        onPress={processSurveys}
+        disabled={isProcessing}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>{selectedFile?.name}</Text>
-            <Text style={styles.modalText}>
-              {JSON.stringify(selectedFile?.content, null, 2)}
-            </Text>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setSelectedFile(null)}
-            >
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+        <Text style={styles.processButtonText}>
+          {isProcessing ? 'Processing...' : 'Process Surveys'}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -91,48 +63,34 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  item: {
-    padding: 15,
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
   itemText: {
     fontSize: 16,
+    marginLeft: 10,
   },
-  error: {
+  errorText: {
     color: 'red',
     fontSize: 16,
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 10,
-    width: '90%',
-    maxHeight: '80%',
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  modalText: {
-    fontSize: 14,
-  },
-  closeButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#ddd',
+  processButton: {
+    backgroundColor: '#4A90E2',
+    padding: 15,
     borderRadius: 5,
-    alignSelf: 'flex-end',
+    alignItems: 'center',
+    marginTop: 20,
   },
-  closeButtonText: {
+  processButtonDisabled: {
+    backgroundColor: '#A0A0A0',
+  },
+  processButtonText: {
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
