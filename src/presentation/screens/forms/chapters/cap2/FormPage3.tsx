@@ -51,7 +51,7 @@ export const FormPage3 = () => {
 
             <Formik
                 initialValues={initialValues}
-                // validationSchema={validationSchemaPage3}
+                validationSchema={validationSchemaPage3}
                 onSubmit={ async(
                 values: FormValues,
                 {setSubmitting} : FormikHelpers<FormValues>

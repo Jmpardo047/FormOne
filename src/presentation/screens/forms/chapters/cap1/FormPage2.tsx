@@ -46,7 +46,7 @@ export const FormPage2 = () => {
       <ScrollView contentContainerStyle={globalStyles.FomsContainer}>
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchemaPage2}
+          validationSchema={validationSchemaPage2}
           onSubmit={async (
             values: FormValues,
             { setSubmitting }: FormikHelpers<FormValues>

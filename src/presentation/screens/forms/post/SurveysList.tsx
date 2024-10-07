@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Pressable } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { useSurveyProcessor } from '../../../hooks/UseSurveyProcessor';
+import { useNavigation } from '@react-navigation/native'
 
 interface JsonFile {
   name: string;
@@ -11,7 +12,7 @@ interface JsonFile {
 
 export const SurveyProcessor: React.FC = () => {
   const { files, error, isProcessing, toggleFileSelection, processSurveys } = useSurveyProcessor();
-
+  const navigation = useNavigation();
   const renderFileItem = ({ item, index }: { item: JsonFile; index: number }) => (
     <View style={styles.itemContainer}>
       <CheckBox
@@ -39,13 +40,19 @@ export const SurveyProcessor: React.FC = () => {
         renderItem={renderFileItem}
         keyExtractor={(item) => item.name}
       />
+        <Pressable 
+        onPress= {() => navigation.navigate('Home' as never)}
+        style={styles.returnButton}>
+            <Text style={styles.processButtonText}>Volver</Text>
+        </Pressable>
       <TouchableOpacity
         style={[styles.processButton, isProcessing && styles.processButtonDisabled]}
         onPress={processSurveys}
         disabled={isProcessing}
       >
+        
         <Text style={styles.processButtonText}>
-          {isProcessing ? 'Processing...' : 'Process Surveys'}
+          {isProcessing ? 'Processing...' : 'Procesar encuestas'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -80,6 +87,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   processButton: {
+    backgroundColor: '#4A90E2',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  returnButton: {
     backgroundColor: '#4A90E2',
     padding: 15,
     borderRadius: 5,
