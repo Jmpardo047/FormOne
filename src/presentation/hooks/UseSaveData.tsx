@@ -5,24 +5,24 @@ import { FormTemplate } from "../../utils/FormInterfaces";
 
 export const UseSaveData = () => {
         interface SurveyData {
-            surveyId: number;
-            payload: Array<{
-            nroEnCuesta: string;
-            hora: string;
-            responses: any[];
-            }>;
+            surveyid: number;
+            payload: {responses : Array<{
+              nroEnCuesta: string;
+              hora: string;
+              responses: any[];
+              }>;}
         }
         const saveAllData = useCallback(async (fileName: string, data: any, surveyId: string) => {
             try {
               const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-              let currentData: SurveyData = { surveyId: 1, payload: [] };
+              let currentData: SurveyData = { surveyid: 1, payload: {responses : []} };
         
               try {
                 const fileContent = await RNFS.readFile(path, 'utf8');
                 currentData = JSON.parse(fileContent);
                 // Ensure surveyId is set to 1 if it doesn't exist in the current data
                 if (!currentData.hasOwnProperty('surveyId')) {
-                  currentData.surveyId = 1;
+                  currentData.surveyid = 1;
                 }
               } catch (readError) {
                 // If file doesn't exist or is empty, we'll use the default currentData
@@ -31,21 +31,21 @@ export const UseSaveData = () => {
         
               const dataEntries = Object.entries(data).map(([key, value]) => ({ key, value: value as FormTemplate }));
         
-              if (Array.isArray(currentData.payload)) {
-                const surveyIndex = currentData.payload.findIndex((survey) => survey.nroEnCuesta === surveyId);
+              if (Array.isArray(currentData.payload.responses)) {
+                const surveyIndex = currentData.payload.responses.findIndex((survey) => survey.nroEnCuesta === surveyId);
                 
                 if (surveyIndex !== -1) {
                   dataEntries.forEach(entry => {
-                    const responseIndex = currentData.payload[surveyIndex].responses.findIndex((response: any) => response.qId === entry.value.qId);
+                    const responseIndex = currentData.payload.responses[surveyIndex].responses.findIndex((response: any) => response.qId === entry.value.qId);
                     if (responseIndex !== -1) {
-                      currentData.payload[surveyIndex].responses[responseIndex] = entry.value;
+                      currentData.payload.responses[surveyIndex].responses[responseIndex] = entry.value;
                     } else {
-                      currentData.payload[surveyIndex].responses.push(entry.value);
+                      currentData.payload.responses[surveyIndex].responses.push(entry.value);
                     }
                   });
                 } else {
                   // If survey doesn't exist, create a new entry
-                  currentData.payload.push({
+                  currentData.payload.responses.push({
                     nroEnCuesta: surveyId,
                     hora: new Date().toISOString(),
                     responses: dataEntries.map(entry => entry.value)
@@ -87,10 +87,10 @@ export const UseSaveData = () => {
               const month = String(now.getMonth() + 1).padStart(2, '0');
               const day = String(now.getDate()).padStart(2, '0');
               const date = `${year}-${month}-${day}`;
-              const hours = String(now.getHours());
+              const hours = String(now.getTime());
 
               const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-              let currentData: SurveyData = { surveyId: 1, payload: [] }; // Inicializa con una estructura válida
+              let currentData: SurveyData = { surveyid: 1, payload: {responses : []} }; // Inicializa con una estructura válida
               const fileExists = await RNFS.exists(path);
               const newSurvey = {
                   nroEnCuesta: newSurveyId, 
@@ -104,18 +104,18 @@ export const UseSaveData = () => {
                   const fileContent = await RNFS.readFile(path, 'utf8');
                   currentData = JSON.parse(fileContent) as SurveyData;
       
-                  if (Array.isArray(currentData.payload)) {
-                      currentData.payload.push(newSurvey);
+                  if (Array.isArray(currentData.payload.responses)) {
+                      currentData.payload.responses.push(newSurvey);
                   } else {
-                      currentData.payload = [newSurvey];
+                      currentData.payload.responses = [newSurvey];
                   }
       
                   await RNFS.writeFile(path, JSON.stringify(currentData, null, 2), 'utf8');
                   Alert.alert(`File ${fileName} updated`);
               } else {
                   const newData: SurveyData = {
-                      surveyId : 1,
-                      payload: [newSurvey]
+                      surveyid : 1,
+                      payload: {responses: [newSurvey]}
                   };
                   const jsonValue = JSON.stringify(newData, null, 2);
                   await RNFS.writeFile(path, jsonValue, 'utf8');

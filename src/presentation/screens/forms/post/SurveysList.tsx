@@ -28,6 +28,11 @@ export const SurveyProcessor: React.FC = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.errorText}>{error}</Text>
+        <Pressable 
+        onPress= {() => navigation.navigate('Home' as never)}
+        style={styles.returnButton}>
+            <Text style={styles.processButtonText}>Volver</Text>
+        </Pressable>
       </View>
     );
   }
